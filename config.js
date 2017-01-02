@@ -3,21 +3,26 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
+CKEDITOR.stylesSet.add('code_styles', [
+    { name: 'Styles', element: 'p', attributes: { 'class': '' } },
+    { name: 'Java', element: 'pre', attributes: { 'class': 'brush: java;' } },
+    { name: 'JavaScript', element: 'pre', attributes: { 'class': 'brush: js' } },
+    { name: 'C++', element: 'pre', attributes: { 'class': 'brush: cpp' } },
+    { name: 'C#', element: 'pre', attributes: { 'class': 'brush: csharp' } },
+    { name: 'CSS', element: 'pre', attributes: { 'class': 'brush: css' } },
+    { name: 'PHP', element: 'pre', attributes: { 'class': 'brush: php' } },
+    { name: 'Plain Text', element: 'pre', attributes: { 'class': 'brush: text' } },
+    { name: 'Python', element: 'pre', attributes: { 'class': 'brush: python' } },
+    { name: 'SQL', element: 'pre', attributes: { 'class': 'brush: sql' } },
+    { name: 'XML/HTML', element: 'pre', attributes: { 'class': 'brush: xml' } }
+]);
+
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
 	// %REMOVE_START%
 	config.plugins =
-		'about,' +
-		'a11yhelp,' +
 		'basicstyles,' +
-		'bidi,' +
 		'blockquote,' +
 		'clipboard,' +
-		'colorbutton,' +
-		'colordialog,' +
-		'copyformatting,' +
 		'contextmenu,' +
 		'dialogadvtab,' +
 		'div,' +
@@ -25,49 +30,46 @@ CKEDITOR.editorConfig = function( config ) {
 		'enterkey,' +
 		'entities,' +
 		'filebrowser,' +
-		'find,' +
-		'flash,' +
-		'floatingspace,' +
 		'font,' +
 		'format,' +
-		'forms,' +
 		'horizontalrule,' +
 		'htmlwriter,' +
 		'image,' +
-		'iframe,' +
+		'imgblob,' +
 		'indentlist,' +
 		'indentblock,' +
 		'justify,' +
-		'language,' +
 		'link,' +
 		'list,' +
 		'liststyle,' +
 		'magicline,' +
 		'maximize,' +
-		'newpage,' +
-		'pagebreak,' +
-		'pastefromword,' +
-		'pastetext,' +
-		'preview,' +
-		'print,' +
 		'removeformat,' +
 		'resize,' +
-		'save,' +
-		'selectall,' +
-		'showblocks,' +
-		'showborders,' +
-		'smiley,' +
 		'sourcearea,' +
 		'specialchar,' +
 		'stylescombo,' +
 		'tab,' +
-		'table,' +
-		'tabletools,' +
-		'templates,' +
 		'toolbar,' +
 		'undo,' +
 		'wysiwygarea';
 	// %REMOVE_END%
+
+  config.toolbar = [
+    { name: 'document', items: [ 'Source' ] },
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', '-', 'RemoveFormat' ] },
+    { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+    { name: 'links', items: [ 'Link', 'Unlink' ] },
+    { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
+    { name: 'styles', items: [ 'Styles', 'Format' ] },
+    { name: 'tools', items: [ 'Maximize' ] },
+  ];
+
+  // Considering that the basic setup doesn't provide pasting cleanup features,
+  // it's recommended to force everything to be plain text.
+  config.forcePasteAsPlainText = true;
+
+  config.stylesSet = 'code_styles';
 };
 
 // %LEAVE_UNMINIFIED% %REMOVE_LINE%
